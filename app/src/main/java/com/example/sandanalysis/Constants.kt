@@ -1,6 +1,9 @@
 package com.example.sandanalysis
 
 object Constants {
+//    Time difference
+    const val GMT5_DIFFER = 5 * 60 * 60 * 1000
+
 //    DB NAME
     const val DB_NAME="SAMPLES_DB"
 //    DB_VERSION
@@ -13,15 +16,17 @@ object Constants {
     const val C_LAT="LAT"
     const val C_LONG="LONG"
     const val C_IMAGE="IMAGE"
+    const val C_PLOMBA="PLOMBA"
     const val C_ADD_TIMESTAMP="ADD_TIMESTAMP"
     const val C_UPDATED_TIMESTAMP="UPDATED_TIMESTAMP"
 //    Create table query
     const val CREATE_TABLE=("CREATE TABLE " + TABLE_NAME +" ("
         + C_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
         + C_INN+" INTEGER, "
-        + C_LAT+" REAL, "
-        + C_LONG+" REAL, "
+        + C_LAT+" TEXT, "
+        + C_LONG+" TEXT, "
         + C_IMAGE+" TEXT, "
+        + C_PLOMBA+" TEXT, "
         + C_ADD_TIMESTAMP+" TEXT, "
         + C_UPDATED_TIMESTAMP+" TEXT"
         +"); ")

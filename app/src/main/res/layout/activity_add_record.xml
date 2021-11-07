@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/display_text"
-        android:text="Add Sample"
+        android:text="Namuna yuborish"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -33,12 +33,82 @@
         android:padding="10dp"
         android:layout_marginTop="10dp"
         />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fPlomba"
+        android:layout_below="@+id/inn"
+        android:hint="Plomba raqamini kiriting"
+        android:inputType="text"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fLatLabel"
+        android:text="Sizning hozirgi vaqtdagi joylashgan manzil koordinatalari"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:layout_below="@+id/fPlomba"
+        android:labelFor="@id/fLat" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fLat"
+        android:layout_below="@+id/fLatLabel"
+        android:hint="Lat"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fLong"
+        android:layout_below="@+id/fLat"
+        android:hint="Long"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="32sp"
+        android:drawableRight="@drawable/ic_action_reload_location"
+        android:textColor="@color/black"
+        android:id="@+id/reloadLocation"
+        android:drawablePadding="-15sp"
+        android:layout_below="@+id/fLong"
+        android:backgroundTint="@color/common_google_signin_btn_text_dark"
+        android:layout_centerHorizontal="true"
+        android:text="Koordinatalarni yuklash"/>
+<!--    <FrameLayout-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:id="@+id/reloadLocation"-->
+<!--        android:layout_below="@+id/fLong"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        >-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:clickable="false"-->
+<!--            android:text="Lokatsiyani qaya yuklash" >-->
+<!--        </TextView>-->
+<!--        <ImageButton-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/ic_action_reload_location"/>-->
+<!--    </FrameLayout>-->
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/addButton"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/inn"
-        android:text="Add Sample"/>
+        android:layout_below="@+id/reloadLocation"
+        android:text="Namuna saqlash"/>
 </RelativeLayout>

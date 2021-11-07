@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -12,38 +13,104 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+        <androidx.cardview.widget.CardView
+            app:cardElevation="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_action_sample"
-            android:id="@+id/fSampleImage"
-            />
+            tools:ignore="ExtraText"
+            >
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="123456"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:id="@+id/fIndex"/>
+        </androidx.cardview.widget.CardView>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_toEndOf="@+id/fSampleImage"
-            android:layout_toRightOf="@+id/fSampleImage">
+            android:id="@+id/data_wrapper"
+            android:paddingLeft="70dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="INN"
+                android:textSize="25sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:id="@+id/fInn"
+                />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="INN"
-                android:textSize="20dp"
+                android:paddingLeft="3dp"
+                android:text="Kiritilgan sanasi"
+                android:textSize="15dp"
+                android:textStyle="normal"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/black"
-                android:id="@+id/fInn"/>
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/moreBtn"
-                android:src="@drawable/ic_action_more"
-                android:background="@null"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
+                app:layout_constraintBottom_toBottomOf="@+id/fInn"
+                app:layout_constraintEnd_toEndOf="@+id/fInn"
+                android:gravity="center_vertical"
+                android:id="@+id/addedTimestamp"
+                app:drawableLeftCompat="@drawable/ic_action_date"
                 />
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingLeft="3dp"-->
+<!--                android:text="Lattitude"-->
+<!--                android:textSize="14dp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:id="@+id/fLat"/>-->
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingLeft="3dp"-->
+<!--                android:text="Longitude"-->
+<!--                android:textSize="14dp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:id="@+id/fLong"/>-->
         </LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:cardCornerRadius="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:elevation="10dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/fSampleImageWrapper"
+            tools:ignore="ExtraText"
+            android:layout_alignEnd="@+id/data_wrapper"
+            >
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_action_sample"
+                android:id="@+id/fSampleImage"
+                />
+        </androidx.cardview.widget.CardView>
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/moreBtn"
+            android:src="@drawable/ic_action_more"
+            android:background="@null"
+            android:layout_marginEnd="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
 

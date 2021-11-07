@@ -18,16 +18,17 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db!!.execSQL("DROP TABLE IF EXISTS" + Constants.TABLE_NAME)
+        db!!.execSQL("DROP TABLE IF EXISTS " + Constants.TABLE_NAME)
         onCreate(db)
     }
 
     //    insert sample
     fun insertSample(
         image: String?,
+        plomba:String?,
         inn: String?,
-        lat: Float?,
-        long: Float?,
+        lat: String?,
+        long: String?,
         addTimeStamp: String?,
         updatedTimeStamp: String?,
 
@@ -36,6 +37,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
         val values = ContentValues()
         values.put(Constants.C_INN, inn)
         values.put(Constants.C_IMAGE, image)
+        values.put(Constants.C_PLOMBA, plomba)
         values.put(Constants.C_LAT, lat)
         values.put(Constants.C_LONG, long)
         values.put(Constants.C_ADD_TIMESTAMP, addTimeStamp)
@@ -50,7 +52,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
     @SuppressLint("Range")
     fun getAllSamples(orderBy: String): ArrayList<ModelSample> {
         val samplesList = ArrayList<ModelSample>()
-        val selectQuery = "SELECT * FROM ${Constants.TABLE_NAME} ORDER BY $orderBy"
+        val selectQuery = "SELECT * FROM ${Constants.TABLE_NAME} ORDER BY '${orderBy}'"
         val db = this.writableDatabase
         val cursor = db.rawQuery(selectQuery, null)
         if (cursor.moveToNext()) {
@@ -59,8 +61,36 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
                     "" + cursor.getInt(cursor.getColumnIndex(Constants.C_ID)),
                     "" + cursor.getInt(cursor.getColumnIndex(Constants.C_INN)),
                     "" + cursor.getString(cursor.getColumnIndex(Constants.C_IMAGE)),
+                    "" + cursor.getString(cursor.getColumnIndex(Constants.C_PLOMBA)),
                     "" + cursor.getString(cursor.getColumnIndex(Constants.C_ADD_TIMESTAMP)),
-                    "" + cursor.getString(cursor.getColumnIndex(Constants.C_UPDATED_TIMESTAMP))
+                    "" + cursor.getString(cursor.getColumnIndex(Constants.C_UPDATED_TIMESTAMP)),
+                    ""+cursor.getString(cursor.getColumnIndex(Constants.C_LONG)),
+                    ""+cursor.getString(cursor.getColumnIndex(Constants.C_LAT))
+                )
+                samplesList.add(modelSample)
+            } while (cursor.moveToNext())
+        }
+        db.close()
+        return samplesList
+    }
+//   get paginated data
+    @SuppressLint("Range")
+    fun getPaginated(orderBy: String, offSet:String, limit:String): ArrayList<ModelSample> {
+        val samplesList = ArrayList<ModelSample>()
+        val selectQuery = "SELECT * FROM ${Constants.TABLE_NAME} ORDER BY '$orderBy' LIMIT '$limit' OFFSET '$offSet'"
+        val db = this.writableDatabase
+        val cursor = db.rawQuery(selectQuery, null)
+        if (cursor.moveToNext()) {
+            do {
+                val modelSample = ModelSample(
+                    "" + cursor.getInt(cursor.getColumnIndex(Constants.C_ID)),
+                    "" + cursor.getInt(cursor.getColumnIndex(Constants.C_INN)),
+                    "" + cursor.getString(cursor.getColumnIndex(Constants.C_IMAGE)),
+                    "" + cursor.getString(cursor.getColumnIndex(Constants.C_PLOMBA)),
+                    "" + cursor.getString(cursor.getColumnIndex(Constants.C_ADD_TIMESTAMP)),
+                    "" + cursor.getString(cursor.getColumnIndex(Constants.C_UPDATED_TIMESTAMP)),
+                    ""+cursor.getString(cursor.getColumnIndex(Constants.C_LONG)),
+                    ""+cursor.getString(cursor.getColumnIndex(Constants.C_LAT))
                 )
                 samplesList.add(modelSample)
             } while (cursor.moveToNext())
@@ -70,6 +100,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
     }
 
     //search data
+    @SuppressLint("Range")
     fun searchSamples(query: String): ArrayList<ModelSample> {
         val samplesList = ArrayList<ModelSample>()
         val selectQuery =
@@ -82,8 +113,11 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
                     "" + cursor.getInt(cursor.getColumnIndex(Constants.C_ID)),
                     "" + cursor.getInt(cursor.getColumnIndex(Constants.C_INN)),
                     "" + cursor.getString(cursor.getColumnIndex(Constants.C_IMAGE)),
+                    "" + cursor.getString(cursor.getColumnIndex(Constants.C_PLOMBA)),
                     "" + cursor.getString(cursor.getColumnIndex(Constants.C_ADD_TIMESTAMP)),
-                    "" + cursor.getString(cursor.getColumnIndex(Constants.C_UPDATED_TIMESTAMP))
+                    "" + cursor.getString(cursor.getColumnIndex(Constants.C_UPDATED_TIMESTAMP)),
+                    ""+cursor.getString(cursor.getColumnIndex(Constants.C_LONG)),
+                    ""+cursor.getString(cursor.getColumnIndex(Constants.C_LAT))
                 )
                 samplesList.add(modelSample)
             } while (cursor.moveToNext())

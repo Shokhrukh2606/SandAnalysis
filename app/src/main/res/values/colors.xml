@@ -7,4 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="mybrand">#45bf55</color>
+    <color name="mybrandVariant">#33b93a</color>
+    <color name="mysilver">#f7f7f7</color>
 </resources>
