@@ -9,4 +9,5 @@ class ModelSample(
     var updatedTimeStamp: String,
     var pLong:String,
     var pLat:String,
+    var isSended:String
 )

@@ -17,6 +17,7 @@ object Constants {
     const val C_LONG="LONG"
     const val C_IMAGE="IMAGE"
     const val C_PLOMBA="PLOMBA"
+    const val C_IS_SENDED="IS_SENDED"
     const val C_ADD_TIMESTAMP="ADD_TIMESTAMP"
     const val C_UPDATED_TIMESTAMP="UPDATED_TIMESTAMP"
 //    Create table query
@@ -27,6 +28,7 @@ object Constants {
         + C_LONG+" TEXT, "
         + C_IMAGE+" TEXT, "
         + C_PLOMBA+" TEXT, "
+        + C_IS_SENDED+" INTEGER, "
         + C_ADD_TIMESTAMP+" TEXT, "
         + C_UPDATED_TIMESTAMP+" TEXT"
         +"); ")

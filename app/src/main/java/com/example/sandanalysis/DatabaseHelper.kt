@@ -40,6 +40,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
         values.put(Constants.C_PLOMBA, plomba)
         values.put(Constants.C_LAT, lat)
         values.put(Constants.C_LONG, long)
+        values.put(Constants.C_IS_SENDED, "0")
         values.put(Constants.C_ADD_TIMESTAMP, addTimeStamp)
         values.put(Constants.C_UPDATED_TIMESTAMP, updatedTimeStamp)
         val id = db.insert(Constants.TABLE_NAME, null, values)
@@ -52,7 +53,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
     @SuppressLint("Range")
     fun getAllSamples(orderBy: String): ArrayList<ModelSample> {
         val samplesList = ArrayList<ModelSample>()
-        val selectQuery = "SELECT * FROM ${Constants.TABLE_NAME} ORDER BY '${orderBy}'"
+        val selectQuery = "SELECT * FROM ${Constants.TABLE_NAME} ORDER BY $orderBy"
         val db = this.writableDatabase
         val cursor = db.rawQuery(selectQuery, null)
         if (cursor.moveToNext()) {
@@ -65,7 +66,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
                     "" + cursor.getString(cursor.getColumnIndex(Constants.C_ADD_TIMESTAMP)),
                     "" + cursor.getString(cursor.getColumnIndex(Constants.C_UPDATED_TIMESTAMP)),
                     ""+cursor.getString(cursor.getColumnIndex(Constants.C_LONG)),
-                    ""+cursor.getString(cursor.getColumnIndex(Constants.C_LAT))
+                    ""+cursor.getString(cursor.getColumnIndex(Constants.C_LAT)),
+                    ""+cursor.getString(cursor.getColumnIndex(Constants.C_IS_SENDED))
                 )
                 samplesList.add(modelSample)
             } while (cursor.moveToNext())
@@ -77,7 +79,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
     @SuppressLint("Range")
     fun getPaginated(orderBy: String, offSet:String, limit:String): ArrayList<ModelSample> {
         val samplesList = ArrayList<ModelSample>()
-        val selectQuery = "SELECT * FROM ${Constants.TABLE_NAME} ORDER BY '$orderBy' LIMIT '$limit' OFFSET '$offSet'"
+        val selectQuery = "SELECT * FROM ${Constants.TABLE_NAME} ORDER BY $orderBy LIMIT $limit OFFSET $offSet"
         val db = this.writableDatabase
         val cursor = db.rawQuery(selectQuery, null)
         if (cursor.moveToNext()) {
@@ -90,7 +92,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
                     "" + cursor.getString(cursor.getColumnIndex(Constants.C_ADD_TIMESTAMP)),
                     "" + cursor.getString(cursor.getColumnIndex(Constants.C_UPDATED_TIMESTAMP)),
                     ""+cursor.getString(cursor.getColumnIndex(Constants.C_LONG)),
-                    ""+cursor.getString(cursor.getColumnIndex(Constants.C_LAT))
+                    ""+cursor.getString(cursor.getColumnIndex(Constants.C_LAT)),
+                    ""+cursor.getString(cursor.getColumnIndex(Constants.C_IS_SENDED))
                 )
                 samplesList.add(modelSample)
             } while (cursor.moveToNext())
@@ -117,7 +120,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
                     "" + cursor.getString(cursor.getColumnIndex(Constants.C_ADD_TIMESTAMP)),
                     "" + cursor.getString(cursor.getColumnIndex(Constants.C_UPDATED_TIMESTAMP)),
                     ""+cursor.getString(cursor.getColumnIndex(Constants.C_LONG)),
-                    ""+cursor.getString(cursor.getColumnIndex(Constants.C_LAT))
+                    ""+cursor.getString(cursor.getColumnIndex(Constants.C_LAT)),
+                    ""+cursor.getString(cursor.getColumnIndex(Constants.C_IS_SENDED)),
                 )
                 samplesList.add(modelSample)
             } while (cursor.moveToNext())

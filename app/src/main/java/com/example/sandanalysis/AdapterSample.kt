@@ -46,10 +46,16 @@ class AdapterSample() : RecyclerView.Adapter<AdapterSample.HolderSample>() {
         val updatedTimeStamp = modelSample.updatedTimeStamp
         val pLat = modelSample.pLat
         val pLong = modelSample.pLong
+        val isSended = modelSample.isSended.toInt()
         holder.fIndex.text=(position+1).toString()
         holder.fInn.text = inn
-        holder.fSampleImage.setImageResource(R.drawable.ic_action_sample)
+
         holder.addedTimeStamp.text=addedTimeStamp.toLong().gmt0()?.toDatetime("dd-MM-yyyy HH:mm")
+        if(isSended==1){
+            holder.fSampleImage.setImageResource(R.drawable.ic_action_checked)
+        }else{
+            holder.fSampleImage.setImageResource(R.drawable.ic_action_unchecked)
+        }
 //        holder.fLat.text=pLat
 //        holder.fLong.text=pLong
         holder.itemView.setOnClickListener {

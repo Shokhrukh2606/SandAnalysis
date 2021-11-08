@@ -109,5 +109,8 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         mRecyclerView.adapter=mAdapter
+        page=1
+        samples.clear()
+        getPage()
     }
 }
